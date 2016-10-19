@@ -7,18 +7,8 @@ import { createStore } from 'redux';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
+import reducer from './../reducers';
 import App from './../components/App';
-
-const reducer = (state = { count: 0 }, action) => {
-  switch (action.type) {
-    case 'COUNT':
-      return Object.assign({}, state, {
-        count: state.count + 1
-      });
-    default:
-      return state;
-  }
-}
 
 const store = createStore(reducer);
 
@@ -37,6 +27,11 @@ if (module.hot) {
   module.hot.accept('./../components/App', () => {
     const RootComponent = require('./../components/App').default; // eslint-disable-line
     mount(RootComponent);
+  });
+
+  module.hot.accept('./../reducers', () => {
+    const nextReducer = require('./../reducers').default;
+    store.replaceReducer(nextReducer);
   });
 }
 
