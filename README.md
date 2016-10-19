@@ -1,3 +1,7 @@
+**!** kyt requires Node v6.0 or higher.
+
+Get Node at https://nodejs.org/en/download/current/
+
 # How to run in development
 
 1. `npm run dev`
