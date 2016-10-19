@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "kyt": "^0.2.2"
+  },
+  "scripts": {
+    "setup": "kyt setup"
+  }
+}
