@@ -10,7 +10,11 @@ import { Provider } from 'react-redux';
 import reducer from './../reducers';
 import App from './../components/App';
 
-const store = createStore(reducer);
+const devToolsExtension = (
+  typeof window.devToolsExtension !== 'undefined'
+) ? window.devToolsExtension() : f => f;
+
+const store = createStore(reducer, void 0, devToolsExtension);
 
 const root = document.querySelector('#root');
 
