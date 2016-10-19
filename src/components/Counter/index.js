@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styles from './Counter.css';
 
 const Counter = ({ count }) => (
@@ -6,19 +7,8 @@ const Counter = ({ count }) => (
 );
 
 class CounterContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0
-    };
-  }
-
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.setState({
-        count: this.state.count + 1
-      });
-    }, 1000);
+    this.interval = setInterval(this.props.increment, 1000);
   }
 
   componentWillUnmount() {
@@ -26,8 +16,21 @@ class CounterContainer extends React.Component {
   }
 
   render() {
-    return <Counter count={this.state.count} />
+    return <Counter count={this.props.count} />
   }
 }
 
-export default CounterContainer;
+const mapStateToProps = ({ count }) => ({
+  count
+});
+
+const mapDispatchToProps = dispatch => ({
+  increment: () => dispatch({
+    type: 'COUNT'
+  })
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CounterContainer);
