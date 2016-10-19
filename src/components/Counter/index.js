@@ -8,7 +8,7 @@ const Counter = ({ count }) => (
 
 class CounterContainer extends React.Component {
   componentDidMount() {
-    this.interval = setInterval(this.props.increment, 1000);
+    this.interval = setInterval(this.props.increment, 5000);
   }
 
   componentWillUnmount() {
